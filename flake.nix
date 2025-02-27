@@ -28,6 +28,8 @@
         legacyPackages = pkgs;
         devShells.default = mkShell ({
           inputsFrom = [ gcd.gcd-compiled gcd.tb-dpi-lib ];
+          nativeBuildInputs = [ pkgs.xorg.lndir ];
+          shellHook = "lndir ${mill-dependencies.chisel}/.ivy2 ~/.ivy2";
           packages = [ cargo rustfmt rust-analyzer nixd nvfetcher ];
           RUST_SRC_PATH =
             "${rust.packages.stable.rustPlatform.rustLibSrc}";
